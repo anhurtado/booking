@@ -1,0 +1,25 @@
+<form [formGroup]="loginForm" (ngSubmit)="login($event)" novalidate class="w-100">
+  <mat-form-field appearance="outline" class="w-100 mt-3">
+    <mat-label>Correo electrónico *</mat-label>
+    <input matInput formControlName="email">
+    <mat-error *ngIf="f['email'].errors && f['email'].touched">
+      <label *ngIf="f['email'].errors.required || f['email'].errors.email">
+        Debe ser un correo electrónico válido
+      </label>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100 mt-3">
+    <mat-label>Clave *</mat-label>
+    <input matInput formControlName="password">
+    <mat-error *ngIf="f['password'].errors && f['password'].touched">
+      <label *ngIf="f['password'].errors.required || f['password'].errors.password">
+        La clave es obligatoria
+      </label>
+    </mat-error>
+  </mat-form-field>
+
+  <button type="submit" mat-flat-button color="primary" class="w-100 mb-2" [disabled]="loginForm.invalid">
+    ENTRAR
+  </button>
+</form>

@@ -1,0 +1,79 @@
+<article class="row">
+  <section class="col">
+    <mat-form-field>
+      <mat-label>Campos</mat-label>
+      <mat-select [(ngModel)]="field">
+        <mat-option *ngFor="let f of fields" [value]="f.value">
+          {{ f.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </section>
+  <section class="col">
+    <mat-form-field>
+      <mat-label>Operador</mat-label>
+      <mat-select [(ngModel)]="operator">
+        <mat-option *ngFor="let o of operators" [value]="o.value">
+          {{ o.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </section>
+  <section class="col">
+    <mat-form-field>
+      <mat-label>Valor</mat-label>
+      <input matInput [(ngModel)]="search" #input>
+    </mat-form-field>
+  </section>
+  <section class="col">
+    <button mat-flat-button color="primary" class="w-100 mb-2" (click)="applyFilterLike()">
+      FILTRAR
+    </button>
+  </section>
+</article>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="bookingId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center">BookingId</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.bookingId }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="client">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center">Cliente</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.firstName }} {{ row.lastName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bookingTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center">Creación</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.bookingTime | date }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="streetAddress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center">Dirección</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.streetAddress }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bookingPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center">Precio</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.bookingPrice | currency }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="5">No hay información disponible</td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,9 @@
+<article class="d-block w-75 mx-auto text-center mt-5 p-5 bg-light">
+  <h1 class="text-info">BOOKING</h1>
+  <p class="text-secundary">Listado de reservas del usuario <b>{{ email }}</b></p>
+  <app-booking-list *ngIf="bookingList.length > 0" [list]="bookingList"></app-booking-list>
+
+  <button mat-flat-button color="primary" class="mt-5" (click)="logout()">
+    SALIR
+  </button>
+</article>
